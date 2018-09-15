@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<repositories xmlns="" version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name>da707-lua</name>
+    <description lang="en">DevelAngel707 ebuilds for Lua Packages like Prosody IM</description>
+    <homepage>https://github.com/DevelAngel707/gentoo-overlay-da707-lua</homepage>
+    <owner type="person">
+      <name>Angelos Drossos</name>
+      <email>Angelos.Drossos@gmail.com</email>
+    </owner>
+    <source type="git">https://github.com/DevelAngel707/gentoo-overlay-da707-lua.git</source>
+    <feed>https://github.com/DevelAngel707/gentoo-overlay-da707-lua/commits/master.atom</feed>
+  </repo>
+</repositories>
+
