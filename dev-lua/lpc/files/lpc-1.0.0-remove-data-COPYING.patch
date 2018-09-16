@@ -1,0 +1,8 @@
+--- a/CMakeLists.txt	2018-09-16 10:23:36.655663276 +0200
++++ b/CMakeLists.txt	2018-09-16 10:23:51.353547089 +0200
+@@ -10,4 +10,4 @@
+ include ( lua )
+ 
+ install_lua_module ( lpc lpc.c )
+-install_data ( COPYING )
++#install_data ( COPYING )

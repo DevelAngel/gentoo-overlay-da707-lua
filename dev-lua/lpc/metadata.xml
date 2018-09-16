@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="project">
+		<email>luadist-dev@googlegroups.com</email>
+		<name>LuaDist</name>
+		<description>A distribution of the Lua programming language.</description>
+	</maintainer>
+	<upstream>
+		<maintainer type="person">
+			<name>Peter Drahoš</name>
+		</maintainer>
+	</upstream>
+	<longdescription>
+		Allows Lua scripts to call external processes while capturing both
+		their input and output(in contrast to Lua's popen function that can
+		only capture one or the other).
+	</longdescription> 
+</pkgmetadata>
