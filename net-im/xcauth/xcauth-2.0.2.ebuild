@@ -61,12 +61,12 @@ src_unpack() {
 
 	if [ ! -f "${S}"/setup.py ]; then
 		cp "${FILESDIR}"/setup-${PV}.py "${S}"/setup.py
-		elog "Add missing setup.py"
+		einfo "Add missing setup.py"
 	fi
 
 	if [ -f "${S}"/Makefile ]; then
 		rm "${S}"/Makefile
-		elog "Remove Makefile because ebuild handles installation"
+		einfo "Remove Makefile because ebuild handles installation"
 	fi
 }
 
@@ -118,15 +118,15 @@ python_install_all() {
 
 pkg_postinst() {
 	if use socket; then
-		einfo "It is recommended for security reasons to use the xcauth socket to authenticate xmpp cloud users"
+		elog "It is recommended for security reasons to use the xcauth socket to authenticate xmpp cloud users"
 		if use prosody; then
-			einfo "Use prosody module auth_external_xcauth to access the xcauth-prosody socket"
+			elog "Use prosody module auth_external_xcauth to access the xcauth-prosody socket"
 		fi
 	else
 		ewarn "It is recommended for security reasons to use the xcauth sockets to authenticate xmpp cloud users by activating the socket use flag"
 	fi
 
 	if use prosody || use ejabberd; then
-		einfo "If you don't want to use the socket, add user jabber to group ${PN} to be able to read ${XCAUTH_ETC}/xcauth.conf"
+		elog "If you don't want to use the socket, add user jabber to group ${PN} to be able to read ${XCAUTH_ETC}/xcauth.conf"
 	fi
 }
