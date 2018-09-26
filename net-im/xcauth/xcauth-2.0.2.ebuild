@@ -47,6 +47,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.0.2-change-conf-path.patch
 	"${FILESDIR}"/${PN}-2.0.2-change-xcauth-path.patch
 	"${FILESDIR}"/${PN}-2.0.2-remove-sasl-chgrp-command.patch
+	"${FILESDIR}"/${PN}-2.0.2-fix-mod_auth_external-lpty.patch
 )
 
 pkg_setup() {

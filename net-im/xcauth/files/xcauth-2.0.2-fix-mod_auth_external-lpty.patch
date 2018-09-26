@@ -1,0 +1,18 @@
+--- a/prosody-modules/mod_auth_external.lua	2018-09-26 22:17:43.704987974 +0200
++++ b/prosody-modules/mod_auth_external.lua	2018-09-26 22:19:05.899355268 +0200
+@@ -20,7 +20,6 @@
+ local script_type = module:get_option_string("external_auth_protocol", "generic");
+ local command = module:get_option_string("external_auth_command", "");
+ local read_timeout = module:get_option_number("external_auth_timeout", 5);
+-local blocking = module:get_option_boolean("external_auth_blocking", not(have_async and server.event and lpty.getfd));
+ local auth_processes = module:get_option_number("external_auth_processes", 1);
+ 
+ local lpty, pty_options;
+@@ -39,6 +38,7 @@
+ assert(not host:find(":"), "Invalid hostname");
+ 
+ 
++local blocking = module:get_option_boolean("external_auth_blocking", not(have_async and server.event and lpty.getfd));
+ if not blocking then
+ 	log("debug", "External auth in non-blocking mode, yay!")
+ 	waiter, guard = async.waiter, async.guarder();
