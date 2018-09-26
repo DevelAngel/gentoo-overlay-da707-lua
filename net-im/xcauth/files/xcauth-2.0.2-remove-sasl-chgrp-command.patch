@@ -1,0 +1,19 @@
+--- a/systemd/xcauth.service	2018-09-26 18:19:09.882753419 +0200
++++ b/systemd/xcauth.service	2018-09-26 19:35:45.875136249 +0200
+@@ -5,16 +5,6 @@
+ ExecStart=/usr/sbin/xcauth
+ User=xcauth
+ Sockets=xcauth.socket xcejabberd.socket xcpostfix.socket xcprosody.socket xcsaslauth.socket
+-# Should be doable in `xcsaslauth.socket` according to
+-# https://www.freedesktop.org/software/systemd/man/systemd.socket.html#ExecStartPre=
+-# but doesn't for me in Ubuntu 18.04. So I moved it here.
+-#
+-# The downside of this setup: salsauth connection may not occur before
+-# manual `systemctl start xcauth.service` or connection to one of the
+-# other sockets.
+-#
+-# Do not fail if /var/run/saslauthd does not exist
+-ExecStartPre=-+/bin/chgrp sasl /var/run/saslauthd/
+ 
+ [Install]
+ WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+--- a/systemd/xcauth.service	2018-09-26 18:19:09.882753419 +0200
++++ b/systemd/xcauth.service	2018-09-26 19:32:59.477307210 +0200
+@@ -2,7 +2,7 @@
+ Description=XMPP to Nextcloud+JSXC authentication bridge
+ 
+ [Service]
+-ExecStart=/usr/sbin/xcauth
++ExecStart=/usr/bin/xcauth
+ User=xcauth
+ Sockets=xcauth.socket xcejabberd.socket xcpostfix.socket xcprosody.socket xcsaslauth.socket
+ # Should be doable in `xcsaslauth.socket` according to

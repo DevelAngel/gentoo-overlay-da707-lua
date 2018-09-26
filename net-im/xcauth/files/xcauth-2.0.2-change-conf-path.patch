@@ -1,0 +1,11 @@
+--- a/xclib/configuration.py	2018-09-26 18:23:14.291974683 +0200
++++ b/xclib/configuration.py	2018-09-26 18:25:40.010914004 +0200
+@@ -21,7 +21,7 @@
+     app_name = name
+     parser = configargparse.ArgumentParser(description=desc,
+         epilog=epilog,
+-        default_config_files=['/etc/xcauth.conf'])
++        default_config_files=['/etc/xcauth/xcauth.conf'])
+ 
+     parser.add_argument('--config-file', '-c',
+         is_config_file=True,

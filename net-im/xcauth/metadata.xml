@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <name>Marcel Waldvogel</name>
+    <email>marcel.waldvogel@uni-konstanz.de</email>
+  </maintainer>
+  <use>
+    <flag name="socket">Install systemd socket unit files</flag>
+    <flag name="prosody">Add support for Prosody IM</flag>
+    <flag name="ejabberd">Add support for ejabberd IM</flag>
+    <flag name="postfix">Add support for Postfix Mail Transfer Agent</flag>
+    <flag name="saslauth">Add support for SASL authentication service</flag>
+    <flag name="prosody_modules_auth_external_xcauth">Install xcauth's version of mod_auth_external</flag>
+  </use>
+</pkgmetadata>
