@@ -1,0 +1,12 @@
+--- a/mod_roster_cloud.lua	2018-11-01 14:09:55.749222707 +0100
++++ b/mod_roster_cloud.lua	2018-11-01 14:02:27.707636759 +0100
+@@ -39,7 +39,8 @@
+ 	return table.concat(response_body), status
+ end
+ 
+-local function inject_roster_contacts(username, host, roster)
++local function inject_roster_contacts(event)
++	local username, host, roster = event.username, event.host, event.roster;
+ 	module:log('debug', 'inject roster contacts for '..username)
+ 
+ 	local body, status = sendRequest(username)

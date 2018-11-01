@@ -24,6 +24,8 @@ RDEPEND="
 
 DOCS=( README.md )
 
+PATCHES=( "${FILESDIR}"/${PN}-9999-use-event-parameter-in-roster-load-hook-function.patch )
+
 src_install() {
 	default
 
