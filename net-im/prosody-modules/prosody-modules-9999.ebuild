@@ -186,6 +186,7 @@ src_install() {
 		if use prosody_modules_${m}; then
 			insinto ${EPREFIX}/usr/$(get_libdir)/prosody/modules;
 			doins -r "mod_${m}"
+		    einfo "module ${m} installed"
 		fi
 	done
 	use misc && (
