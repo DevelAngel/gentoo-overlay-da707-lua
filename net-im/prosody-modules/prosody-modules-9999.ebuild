@@ -15,14 +15,19 @@ KEYWORDS=""
 
 IUSE="misc"
 
+# command used:
+#   hg clone 'https://hg.prosody.im/prosody-modules/' src
+#   tree -i -d -L 1 -P 'mod_*' src/
 PROSODY_MODULES="
 	addressing
 	adhoc_account_management
 	adhoc_blacklist
 	adhoc_dataforms_demo
 	adhoc_groups
+	adhoc_oauth2_client
 	admin_blocklist
 	admin_message
+	admin_notify
 	admin_probe
 	admin_web
 	alias
@@ -31,8 +36,9 @@ PROSODY_MODULES="
 	auth_ccert
 	auth_custom_http
 	auth_dovecot
-	auth_external
+	auth_external_insecure
 	auth_ha1
+	auth_http
 	auth_http_async
 	auth_http_cookie
 	auth_imap
@@ -49,21 +55,23 @@ PROSODY_MODULES="
 	auto_accept_subscriptions
 	auto_activate_hosts
 	auto_answer_disco_info
+	aws_profile
 	benchmark_storage
 	bidi
+	blocking
 	block_outgoing
 	block_registrations
 	block_s2s_subscriptions
 	block_strangers
 	block_subscribes
 	block_subscriptions
-	blocking
+	bob
 	bookmarks
+	bookmarks2
 	broadcast
 	c2s_conn_throttle
 	c2s_limit_sessions
 	cache_c2s_caps
-	candy
 	captcha_registration
 	carbons
 	carbons_adhoc
@@ -72,11 +80,15 @@ PROSODY_MODULES="
 	client_certs
 	client_proxy
 	cloud_notify
+	cloud_notify_encrypted
+	cloud_notify_filters
+	cloud_notify_priority_tag
 	compact_resource
 	compat_bind
 	compat_dialback
 	compat_muc_admin
 	compat_vcard
+	compliance_2021
 	component_client
 	component_http
 	component_roundrobin
@@ -87,30 +99,40 @@ PROSODY_MODULES="
 	csi
 	csi_battery_saver
 	csi_compat
-	csi_pump
+	csi_grace_period
+	csi_muc_priorities
+	csi_simple_compat
 	data_access
+	debug_traceback
 	default_bookmarks
 	default_vcard
-	delay
 	delegation
 	deny_omemo
+	devices
 	disable_tls
 	discoitems
 	dwd
 	e2e_policy
+	easy_invite
+	email
 	email_pass
 	extdisco
+	external_services
 	fallback_vcard
+	file_management
 	filter_chatstates
 	filter_words
 	firewall
 	flash_policy
 	graceful_shutdown
 	group_bookmarks
+	groups_internal
+	groups_migration
 	host_blacklist
 	host_guard
 	host_status_check
 	host_status_heartbeat
+	http_admin_api
 	http_altconnect
 	http_auth_check
 	http_authentication
@@ -118,11 +140,15 @@ PROSODY_MODULES="
 	http_dir_listing
 	http_dir_listing2
 	http_favicon
-	http_host_status_check
 	http_hostaliases
+	http_host_status_check
 	http_index
+	http_libjs
 	http_logging
 	http_muc_log
+	http_oauth2
+	http_pep_avatar
+	http_prebind
 	http_rest
 	http_roster_admin
 	http_stats_stream
@@ -130,15 +156,26 @@ PROSODY_MODULES="
 	http_upload_external
 	http_user_count
 	idlecompat
+	ignore_host_chatstates
 	incidents_handling
 	inject_ecaps2
 	inotify_reload
 	invite
+	invites
+	invites_adhoc
+	invites_api
+	invites_groups
+	invites_page
+	invites_register
+	invites_register_api
+	invites_register_web
+	invites_tracking
 	ipcheck
 	isolate_host
 	jid_prep
 	json_streams
 	lastlog
+	lastlog2
 	latex
 	lib_ldap
 	limit_auth
@@ -148,10 +185,14 @@ PROSODY_MODULES="
 	listusers
 	log_auth
 	log_events
+	log_events_by_cpu_usage
+	log_events_by_memory
 	log_http
+	log_json
 	log_mark
 	log_messages_sql
 	log_rate
+	log_ringbuffer
 	log_sasl_mech
 	log_slow_events
 	mam
@@ -160,6 +201,8 @@ PROSODY_MODULES="
 	mam_muc
 	mamsub
 	manifesto
+	map
+	measure_client_features
 	measure_client_identities
 	measure_client_presence
 	measure_cpu
@@ -167,6 +210,8 @@ PROSODY_MODULES="
 	measure_memory
 	measure_message_e2ee
 	measure_message_length
+	measure_muc
+	measure_registration
 	measure_stanza_counts
 	measure_storage
 	message_logging
@@ -174,27 +219,55 @@ PROSODY_MODULES="
 	minimix
 	motd_sequential
 	muc_access_control
+	muc_archive
 	muc_badge
 	muc_ban_ip
+	muc_batched_probe
 	muc_block_pm
+	muc_cloud_notify
 	muc_config_restrict
+	muc_defaults
 	muc_eventsource
 	muc_gc10
+	muc_hats_adhoc
+	muc_hats_api
+	muc_hide_media
+	muc_http_auth
+	muc_inject_mentions
 	muc_intercom
 	muc_lang
 	muc_limits
+	muc_local_only
 	muc_log
 	muc_log_http
+	muc_mam_hints
+	muc_mam_markers
+	muc_markers
+	muc_media_metadata
+	muc_mention_notifications
+	muc_moderation
+	muc_notifications
+	muc_occupant_id
+	muc_offline_delivery
+	muc_ping
+	muc_rai
 	muc_restrict_rooms
+	muc_search
+	muc_webchat_url
 	munin
 	net_dovecotauth
 	net_proxy
+	nodeinfo2
+	nooffline_noerror
 	offline_email
+	offline_hints
+	ogp
 	omemo_all_access
 	onhold
 	onions
 	openid
 	password_policy
+	password_reset
 	pastebin
 	pep_vcard_avatar
 	pep_vcard_png_avatar
@@ -219,10 +292,12 @@ PROSODY_MODULES="
 	pubsub_pivotaltracker
 	pubsub_post
 	pubsub_stats
+	pubsub_text_interface
 	pubsub_twitter
 	query_client_ver
 	rawdebug
 	readonly
+	register_apps
 	register_dnsbl
 	register_dnsbl_firewall_mark
 	register_dnsbl_warn
@@ -232,8 +307,10 @@ PROSODY_MODULES="
 	register_web
 	reload_components
 	reload_modules
+	reminders
 	remote_roster
 	require_otr
+	rest
 	roster_allinall
 	roster_command
 	s2s_auth_compat
@@ -248,14 +325,16 @@ PROSODY_MODULES="
 	s2s_keysize_policy
 	s2s_log_certs
 	s2s_never_encrypt_blacklist
+	s2soutinjection
 	s2s_reload_newcomponent
 	s2s_whitelist
-	s2soutinjection
-	sasl_oauthbearer
+	sasl2
 	saslauth_muc
 	saslname
+	sasl_oauthbearer
 	seclabels
 	secure_interfaces
+	sentry
 	server_status
 	service_directories
 	sift
@@ -264,6 +343,7 @@ PROSODY_MODULES="
 	smacks_noerror
 	smacks_offline
 	sms_clickatell
+	sms_free
 	spam_reporting
 	srvinjection
 	sslv3_warn
@@ -275,6 +355,7 @@ PROSODY_MODULES="
 	statistics_mem
 	statistics_statsd
 	statistics_statsman
+	stats39
 	statsd
 	storage_appendmap
 	storage_ejabberdsql_readonly
@@ -290,9 +371,11 @@ PROSODY_MODULES="
 	streamstats
 	strict_https
 	support_contact
+	support_room
 	swedishchef
 	tcpproxy
 	telnet_tlsinfo
+	test_data
 	throttle_presence
 	throttle_unsolicited
 	tls_policy
@@ -304,8 +387,11 @@ PROSODY_MODULES="
 	vcard_command
 	vcard_muc
 	vjud
+	warn_legacy_tls
+	watch_spam_reports
 	watchuntrusted
 	webpresence
+	welcome_page
 	xhtmlim
 "
 
@@ -395,7 +481,7 @@ RDEPEND="
 	prosody_modules_component_client? (
 		dev-lua/luasocket
 	)
-	prosody_modules_auth_external? (
+	prosody_modules_auth_external_insecure? (
 		dev-lua/lpc
 	)
 	prosody_modules_auth_sql? (
